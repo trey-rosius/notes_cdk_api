@@ -1,0 +1,39 @@
+type Note @aws_api_key @aws_cognito_user_pools {
+  id: ID!
+  title: String!
+  description: String!
+  color: String!
+  createdOn: AWSTimestamp
+}
+
+input NoteInput {
+  id: ID!
+  title: String!
+  description: String!
+  color: String!
+  createdOn: AWSTimestamp
+}
+
+input UpdateNoteInput {
+  id: ID!
+  title: String!
+  description: String!
+  color: String!
+  updatedOn: AWSTimestamp
+}
+
+type Query {
+  getNoteById(noteId: String!): Note @aws_api_key @aws_cognito_user_pools
+  listNotes: [Note] @aws_api_key @aws_cognito_user_pools
+}
+
+type Mutation {
+  createNote(note: NoteInput!): Note @aws_cognito_user_pools
+  updateNote(note: UpdateNoteInput!): Note @aws_cognito_user_pools
+  deleteNote(noteId: String!): String @aws_cognito_user_pools
+}
+type Subscription {
+  onCreateNote: Note @aws_subscribe(mutations: ["createNote"])
+  onDeleteNote: String @aws_subscribe(mutations: ["deleteNote"])
+  onUpdateNote: Note @aws_subscribe(mutations: ["updateNote"])
+}
