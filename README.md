@@ -1,3 +1,6 @@
+# Blog Post
+This project has a blog post. You can check it out here
+https://phatrabbitapps.com/building-full-stack-serverless-application-with-amplify-flutter-graphql-aws-cdk-and-typescript
 # Welcome to your CDK TypeScript project!
 
 This is a blank project for TypeScript development with CDK.
